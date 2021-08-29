@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "459844262371",
+    "project_id": "jitc-project",
+    "storage_bucket": "jitc-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:459844262371:android:cd5cf149f32a178028a8d6",
+        "android_client_info": {
+          "package_name": "com.jitc.adminjitc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "459844262371-p9k969g9397nj4tvmusmi7sr5nio0jb6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBicoEF2t5DFqPO8X_cF21mJi6mu_hHp-0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "459844262371-p9k969g9397nj4tvmusmi7sr5nio0jb6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

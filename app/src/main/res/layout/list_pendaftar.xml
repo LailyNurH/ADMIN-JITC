@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+            <ImageButton
+                android:id="@+id/deletePendaftar"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/ic_delete"
+                android:layout_alignParentEnd="true"
+                />
+            <ImageButton
+                android:id="@+id/hubungiPendaftar"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_below="@id/deletePendaftar"
+                android:background="@drawable/ic_message"
+                android:layout_alignParentEnd="true"
+                />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvvimage"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                app:cardBackgroundColor="@color/teal_200"
+                app:cardCornerRadius="18dp">
+
+                <ImageView
+                    android:id="@+id/imgpendaftar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:id="@+id/linear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_toRightOf="@id/cvvimage"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/namapendaftar"
+                    android:layout_width="wrap_content"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:layout_height="wrap_content"
+                    android:text="Nama Pendaftar"
+                    android:textColor="@color/black"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/jkpendaftar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Jenis Kelamin"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:textColor="#5843BE"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/alamatEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Alamat Email"
+                    android:fontFamily="@font/poppinslight"
+                    android:textSize="17sp" />
+                <TextView
+                    android:id="@+id/asalinstansi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Asal Instansi"
+                    android:maxLines="1"
+                    android:fontFamily="@font/poppinslight"
+                    android:textSize="17sp" />
+                <TextView
+                    android:id="@+id/nohp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nomor Telefon"
+                    android:maxLines="1"
+                    android:fontFamily="@font/poppinslight"
+                    android:textSize="17sp" />
+                <TextView
+                    android:id="@+id/coursdipilih"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Course Yang Di Pilih"
+                    android:maxLines="1"
+                    android:fontFamily="@font/poppinslight"
+                    android:textSize="17sp" />
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

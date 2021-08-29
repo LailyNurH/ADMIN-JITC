@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".uploadcourse.MainActivity">
+
+   <ImageView
+       android:id="@+id/imageView"
+       android:layout_width="match_parent"
+       android:background="@drawable/ic_header"
+       android:layout_height="200dp"/>
+
+   <ImageView
+       android:id="@+id/f"
+       android:layout_width="match_parent"
+       android:background="@drawable/ic_footer"
+       android:layout_alignParentBottom="true"
+       android:layout_height="50dp"/>
+
+   <TextView
+       android:id="@+id/textView"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="30dp"
+       android:fontFamily="@font/sairabold"
+       android:text="Upload Course"
+       android:textColor="@color/white"
+       android:layout_centerHorizontal="true"
+       android:textSize="30sp"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent" />
+<ScrollView
+    android:layout_below="@id/imageView"
+    android:layout_marginTop="-50dp"
+    android:padding="16dp"
+    android:layout_above="@id/f"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:gravity="center"
+       android:orientation="vertical">
+
+      <androidx.cardview.widget.CardView
+          android:id="@+id/addImage"
+          android:layout_width="130dp"
+          android:layout_height="150dp"
+          android:layout_margin="10dp"
+          app:cardElevation="5dp">
+
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:gravity="center"
+             android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:background="@drawable/ic_circle1"
+                android:padding="15dp"
+                android:src="@drawable/ic_add_image" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:textAlignment="center"
+                android:text="Select Image\nCourse"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+
+         </LinearLayout>
+
+      </androidx.cardview.widget.CardView>
+
+      <com.google.android.material.textfield.TextInputLayout
+          style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_marginTop="16dp">
+
+         <com.google.android.material.textfield.TextInputEditText
+             android:id="@+id/judulCourse"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:hint="Masukan judul Course" />
+
+      </com.google.android.material.textfield.TextInputLayout>
+
+      <com.google.android.material.textfield.TextInputLayout
+          style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_marginTop="16dp">
+
+         <com.google.android.material.textfield.TextInputEditText
+             android:id="@+id/hargaCourse"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:hint="Masukan Harga Course" />
+
+      </com.google.android.material.textfield.TextInputLayout>
+
+      <com.google.android.material.textfield.TextInputLayout
+          style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_marginTop="16dp">
+
+         <com.google.android.material.textfield.TextInputEditText
+             android:id="@+id/durasiCourse"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:hint="Masukan Durasi Course" />
+
+      </com.google.android.material.textfield.TextInputLayout>
+
+      <com.google.android.material.textfield.TextInputLayout
+          style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_marginTop="16dp">
+
+         <com.google.android.material.textfield.TextInputEditText
+             android:id="@+id/deskripsi"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:lines="10"
+             android:minLines="5"
+             android:hint="Masukan Deskripsi Course" />
+
+      </com.google.android.material.textfield.TextInputLayout>
+      <com.google.android.material.button.MaterialButton
+          android:id="@+id/uploadCourseBtn"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="16dp"
+          android:textColor="@color/white"
+          android:text="Upload Course"
+          android:fontFamily="@font/poppinssb"
+          android:background="@drawable/btndarkgrey"
+          />
+
+      <com.google.android.material.card.MaterialCardView
+          android:layout_width="match_parent"
+          android:layout_height="400dp"
+          android:layout_marginTop="16dp">
+
+         <ImageView
+             android:id="@+id/imagepreview"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:scaleType="centerCrop" />
+
+      </com.google.android.material.card.MaterialCardView>
+   </LinearLayout>
+</ScrollView>
+</RelativeLayout>
