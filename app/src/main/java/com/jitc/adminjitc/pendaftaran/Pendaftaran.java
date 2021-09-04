@@ -1,20 +1,7 @@
 package com.jitc.adminjitc.pendaftaran;
 
 public class Pendaftaran {
-    String nama, jeniskelamin,email , nohp, asalkampus, course, image, date, time, key;
-
-    public Pendaftaran(String nama, String jeniskelamin, String email, String nohp, String asalkampus, String course, String image, String date, String time, String key) {
-        this.nama = nama;
-        this.jeniskelamin = jeniskelamin;
-        this.email = email;
-        this.nohp = nohp;
-        this.asalkampus = asalkampus;
-        this.course = course;
-        this.image = image;
-        this.date = date;
-        this.time = time;
-        this.key = key;
-    }
+    String nama,keterangan,medsos, email , nohp, asalkampus, course, image, date, time, key;
 
     public Pendaftaran(){
 
@@ -28,12 +15,20 @@ public class Pendaftaran {
         this.nama = nama;
     }
 
-    public String getJeniskelamin() {
-        return jeniskelamin;
+    public String getKeterangan() {
+        return keterangan;
     }
 
-    public void setJeniskelamin(String jeniskelamin) {
-        this.jeniskelamin = jeniskelamin;
+    public void setKeterangan(String keterangan) {
+        this.keterangan = keterangan;
+    }
+
+    public String getMedsos() {
+        return medsos;
+    }
+
+    public void setMedsos(String medsos) {
+        this.medsos = medsos;
     }
 
     public String getEmail() {
@@ -97,6 +92,20 @@ public class Pendaftaran {
     }
 
     public void setKey(String key) {
+        this.key = key;
+    }
+
+    public Pendaftaran(String nama, String keterangan, String medsos, String email, String nohp, String asalkampus, String course, String image, String date, String time, String key) {
+        this.nama = nama;
+        this.keterangan = keterangan;
+        this.medsos = medsos;
+        this.email = email;
+        this.nohp = nohp;
+        this.asalkampus = asalkampus;
+        this.course = course;
+        this.image = image;
+        this.date = date;
+        this.time = time;
         this.key = key;
     }
 }

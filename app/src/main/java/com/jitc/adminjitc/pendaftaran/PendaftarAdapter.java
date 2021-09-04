@@ -48,7 +48,10 @@ public class PendaftarAdapter extends RecyclerView.Adapter<PendaftarAdapter.Pend
         Pendaftaran pendaftaran = list.get(position);
 
         holder.namapendaftar.setText(pendaftaran.getNama());
-        holder.jkpendaftar.setText(pendaftaran.getJeniskelamin());
+//        holder.jkpendaftar.setText(pendaftaran.getJeniskelamin());
+        holder.medsos.setText(pendaftaran.getMedsos());
+        holder.alamatemail.setText(pendaftaran.getEmail());
+        holder.ket.setText(pendaftaran.getKeterangan());
         holder.alamatemail.setText(pendaftaran.getEmail());
         holder.nohp.setText(pendaftaran.getNohp());
         holder.corsedipilih.setText(pendaftaran.getCourse());
@@ -137,6 +140,8 @@ public class PendaftarAdapter extends RecyclerView.Adapter<PendaftarAdapter.Pend
         private TextView alamatemail;
         private TextView asalinstansi;
         private TextView nohp;
+        private TextView medsos;
+        private TextView ket;
         private TextView corsedipilih;
         private ImageView imgpendaftar;
         private ImageButton deletePendaftar;
@@ -147,7 +152,9 @@ public class PendaftarAdapter extends RecyclerView.Adapter<PendaftarAdapter.Pend
             super(itemView);
 
             namapendaftar = itemView.findViewById(R.id.namapendaftar);
-            jkpendaftar = itemView.findViewById(R.id.jkpendaftar);
+//            jkpendaftar = itemView.findViewById(R.id.jkpendaftar);
+            ket= itemView.findViewById(R.id.keterangancourse);
+            medsos= itemView.findViewById(R.id.medsos);
             alamatemail = itemView.findViewById(R.id.alamatEmail);
             asalinstansi = itemView.findViewById(R.id.asalinstansi);
             nohp = itemView.findViewById(R.id.nohp);

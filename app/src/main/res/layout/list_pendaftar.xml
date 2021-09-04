@@ -62,14 +62,14 @@
                     android:textColor="@color/black"
                     android:textSize="17sp" />
 
-                <TextView
-                    android:id="@+id/jkpendaftar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Jenis Kelamin"
-                    android:fontFamily="@font/poppinsmedium"
-                    android:textColor="#5843BE"
-                    android:textSize="17sp" />
+<!--                <TextView-->
+<!--                    android:id="@+id/jkpendaftar"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Jenis Kelamin"-->
+<!--                    android:fontFamily="@font/poppinsmedium"-->
+<!--                    android:textColor="#5843BE"-->
+<!--                    android:textSize="17sp" />-->
 
                 <TextView
                     android:id="@+id/alamatEmail"
@@ -99,6 +99,23 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Course Yang Di Pilih"
+                    android:maxLines="1"
+                    android:fontFamily="@font/poppinslight"
+                    android:textSize="17sp" />
+                <TextView
+                    android:id="@+id/keterangancourse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Keterangan Course"
+                    android:maxLines="1"
+                    android:fontFamily="@font/poppinslight"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/medsos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Media Sosial"
                     android:maxLines="1"
                     android:fontFamily="@font/poppinslight"
                     android:textSize="17sp" />
