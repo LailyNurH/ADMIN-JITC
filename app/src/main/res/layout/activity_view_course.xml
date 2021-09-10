@@ -34,6 +34,7 @@
         android:layout_below="@id/imageView"
         android:layout_above="@id/f"
         android:layout_margin="16dp"
+        tools:listitem="@layout/course_list_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

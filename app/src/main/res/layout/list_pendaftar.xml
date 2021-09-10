@@ -32,6 +32,8 @@
                 android:layout_alignParentEnd="true"
                 />
 
+
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvvimage"
                 android:layout_width="120dp"

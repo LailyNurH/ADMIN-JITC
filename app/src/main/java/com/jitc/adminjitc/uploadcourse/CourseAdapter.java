@@ -1,13 +1,17 @@
 package com.jitc.adminjitc.uploadcourse;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Parcelable;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,14 +22,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.jitc.adminjitc.R;
 import com.jitc.adminjitc.uploadcourse.model.UploadCourseData;
+import com.orhanobut.dialogplus.DialogPlus;
+import com.orhanobut.dialogplus.ViewHolder;
 import com.squareup.picasso.Picasso;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseViewAdapter> {
     private Context context;
@@ -55,6 +65,71 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         holder.courseharga.setText(currentItem.getHarga());
         holder.coursedurasi.setText(currentItem.getDurasi());
         holder.deskripsic.setText(currentItem.getDeskripsi());
+        try{
+            if (currentItem.getImage()!=null)
+                Picasso.get().load(currentItem.getImage()).into(holder.courseimage);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        holder.updateCourse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final DialogPlus dialogPlus=DialogPlus.newDialog(holder.courseimage.getContext())
+                        .setContentHolder(new ViewHolder(R.layout.update_dialog))
+                        .setExpanded(true,1100)
+                        .create();
+                View myview=dialogPlus.getHolderView();
+                final EditText upnama=myview.findViewById(R.id.unama);
+                final EditText upharga=myview.findViewById(R.id.uharga);
+                final EditText updeskripsi=myview.findViewById(R.id.udeskripsi);
+                final EditText updurasi=myview.findViewById(R.id.udurasi);
+                final ImageView upimages= myview.findViewById(R.id.updateImage);
+                Button update=myview.findViewById(R.id.btnUpdate);
+
+                upnama.setText(currentItem.getTitle());
+                upharga.setText(currentItem.getHarga());
+                updeskripsi.setText(currentItem.getDeskripsi());
+                updurasi.setText(currentItem.getDurasi());
+
+//                upimages.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Intent pickimage = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//                        startActivityForResult(pickimage,REQ);
+//                    }
+//                });
+                dialogPlus.show();
+                update.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Map<String,Object> map=new HashMap<>();
+                        map.put("title",upnama.getText().toString());
+                        map.put("harga",upharga.getText().toString());
+                        map.put("deskripsi",updeskripsi.getText().toString());
+                        map.put("durasi",updurasi.getText().toString());
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Note");
+                        reference.child(currentItem.getKey()).updateChildren(map)
+
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Toast.makeText(context, "Course berhasil di Update", Toast.LENGTH_SHORT).show();
+                                        dialogPlus.dismiss();
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        dialogPlus.dismiss();
+                                    }
+                                });
+                    }
+                });
+
+
+            }
+        });
+
         holder.v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,20 +145,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
             }
         });
 
-//        holder.itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                onItemClickCallback.onItemClicked(list.get(holder.getAdapterPosition()));
-//
-//            }
-//        });
-
-        try{
-            if (currentItem.getImage()!=null)
-                Picasso.get().load(currentItem.getImage()).into(holder.courseimage);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
         holder.deletecourse.setOnClickListener(v -> {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -142,6 +203,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
 
     public class CourseViewAdapter extends RecyclerView.ViewHolder {
         private ImageButton deletecourse;
+        private ImageButton updateCourse;
         private TextView coursejudul;
         private TextView coursedurasi;
         private TextView courseharga;
@@ -154,20 +216,14 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
             super(itemView);
 
             deletecourse = itemView.findViewById(R.id.deleteNote);
-            coursejudul = itemView.findViewById(R.id.namacourse);
+            coursejudul = itemView.findViewById(R.id.tittlecourse);
             coursedurasi = itemView.findViewById(R.id.durasi_Course);
             courseharga = itemView.findViewById(R.id.harga_course);
             courseimage = itemView.findViewById(R.id.courseimage);
             deskripsic = itemView.findViewById(R.id.deskripsicourse);
+            updateCourse= itemView.findViewById(R.id.updateCourse);
 
             v=itemView;
         }
     }
-//    public void setOnItemClickCallback(OnItemClickCallback onItemClickCallback) {
-//        this.onItemClickCallback = onItemClickCallback;
-//    }
-//
-//    public interface OnItemClickCallback {
-//        void onItemClicked(UploadCourseData data);
-//    }
 }

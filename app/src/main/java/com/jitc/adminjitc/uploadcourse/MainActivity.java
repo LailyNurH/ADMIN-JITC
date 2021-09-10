@@ -5,12 +5,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +21,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -68,24 +71,23 @@ public class MainActivity extends AppCompatActivity {
         uploadNoteBtn = findViewById(R.id.uploadCourseBtn);
 
         addImage.setOnClickListener(v -> openGallery());
-        uploadNoteBtn.setOnClickListener(v -> {
-            if(judulCourse.getText().toString().isEmpty() || hargaCourse.getText().toString().isEmpty()||durasiCourse.getText().toString().isEmpty()||deskripsicourse.getText().toString().isEmpty()){
-                judulCourse.setError("Empty");
-                hargaCourse.setError("Empty");
-                durasiCourse.setError("Empty");
-                deskripsicourse.setError("Empty");
-                judulCourse.requestFocus();
-                hargaCourse.requestFocus();
-                durasiCourse.requestFocus();
-                deskripsicourse.requestFocus();
-            }else if (bitmap == null){
-                uploadData();
-            }else {
-                uploadImage();
-            }
-        });
-    }
-
+            uploadNoteBtn.setOnClickListener(v -> {
+                if(judulCourse.getText().toString().isEmpty() || hargaCourse.getText().toString().isEmpty()||durasiCourse.getText().toString().isEmpty()||deskripsicourse.getText().toString().isEmpty()){
+                    judulCourse.setError("Empty");
+                    hargaCourse.setError("Empty");
+                    durasiCourse.setError("Empty");
+                    deskripsicourse.setError("Empty");
+                    judulCourse.requestFocus();
+                    hargaCourse.requestFocus();
+                    durasiCourse.requestFocus();
+                    deskripsicourse.requestFocus();
+                }else if (bitmap == null){
+                    uploadData();
+                }else {
+                    uploadImage();
+                }
+            });
+        }
     private void uploadImage() {
         pd.setMessage("Uploading...");
         pd.show();
@@ -145,7 +147,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
     private void openGallery() {
         Intent pickimage = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(pickimage,REQ);
@@ -164,4 +165,6 @@ public class MainActivity extends AppCompatActivity {
             courseImage.setImageBitmap(bitmap);
         }
     }
+
+
 }

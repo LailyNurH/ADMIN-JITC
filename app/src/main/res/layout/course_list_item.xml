@@ -23,6 +23,15 @@
                 android:background="@drawable/ic_delete"
                 android:layout_alignParentEnd="true"
                 />
+
+            <ImageButton
+                android:id="@+id/updateCourse"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_below="@id/deleteNote"
+                android:background="@drawable/ic_edit"
+                android:layout_alignParentEnd="true"
+                />
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvimage"
                 android:layout_width="120dp"
@@ -46,7 +55,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/namacourse"
+                    android:id="@+id/tittlecourse"
                     android:layout_width="wrap_content"
                     android:fontFamily="@font/poppinsmedium"
                     android:layout_height="wrap_content"
@@ -58,7 +67,7 @@
                     android:id="@+id/harga_course"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nama Course"
+                    android:text="Harga Course"
                     android:fontFamily="@font/poppinsmedium"
                     android:textColor="#5843BE"
                     android:textSize="17sp" />
@@ -67,7 +76,7 @@
                     android:id="@+id/durasi_Course"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nama Course"
+                    android:text="Durasi Course"
                     android:fontFamily="@font/poppinslight"
                     android:textSize="17sp" />
                 <TextView

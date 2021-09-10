@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="18dp"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Update Course"
+        android:fontFamily="@font/poppinsbold"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:textColor="#000"/>
+    <ImageView
+        android:id="@+id/updateImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/ic_circle1"
+        android:padding="15dp"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_add_image" />
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Nama Course"
+    android:layout_marginTop="40dp"
+    android:textColor="@color/black"
+    android:fontFamily="@font/poppinsmedium"/>
+    <EditText
+        android:id="@+id/unama"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="Nama" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Durasi Course"
+        android:textColor="@color/black"
+        android:fontFamily="@font/poppinsmedium"/>
+    <EditText
+        android:id="@+id/udurasi"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Durasi" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Harga /Pertemuan"
+        android:textColor="@color/black"
+        android:fontFamily="@font/poppinsmedium"/>
+    <EditText
+        android:id="@+id/uharga"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Harga PerPertemuan" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Deskripsi Course"
+        android:textColor="@color/black"
+        android:fontFamily="@font/poppinsmedium"/>
+    <EditText
+        android:id="@+id/udeskripsi"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Deskripsi Course" />
+
+    <Button
+        android:id="@+id/btnUpdate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Update"
+        android:fontFamily="@font/poppinsbold"
+        android:layout_margin="25dp"/>
+
+</LinearLayout>
