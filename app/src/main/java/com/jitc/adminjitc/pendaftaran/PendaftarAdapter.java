@@ -1,5 +1,6 @@
 package com.jitc.adminjitc.pendaftaran;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -16,12 +17,14 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.jitc.adminjitc.R;
+import com.jitc.adminjitc.uploadcourse.DetailCourseActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -43,30 +46,41 @@ public class PendaftarAdapter extends RecyclerView.Adapter<PendaftarAdapter.Pend
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PendaftarViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PendaftarViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         Pendaftaran pendaftaran = list.get(position);
 
         holder.namapendaftar.setText(pendaftaran.getNama());
 //        holder.jkpendaftar.setText(pendaftaran.getJeniskelamin());
-        holder.medsos.setText(pendaftaran.getMedsos());
-        holder.alamatemail.setText(pendaftaran.getEmail());
-        holder.ket.setText(pendaftaran.getKeterangan());
-        holder.alamatemail.setText(pendaftaran.getEmail());
+//        holder.medsos.setText(pendaftaran.getMedsos());
+//        holder.alamatemail.setText(pendaftaran.getEmail());
+//        holder.ket.setText(pendaftaran.getKeterangan());
         holder.nohp.setText(pendaftaran.getNohp());
         holder.corsedipilih.setText(pendaftaran.getCourse());
-        holder.asalinstansi.setText(pendaftaran.getAsalkampus());
-//        holder.itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent =new Intent(context, ListPendaftarActivity.class);
-//
-//                context.startActivity(intent);
-//            }
-//        });
+//        holder.asalinstansi.setText(pendaftaran.getAsalkampus());
+        holder.view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, DetailPendaftarActivity.class);
+
+                intent.putExtra("namapendaftar", pendaftaran.getNama());
+                intent.putExtra("emailpendaftar", pendaftaran.getEmail());
+                intent.putExtra("instansipendaftar", pendaftaran.getAsalkampus());
+                intent.putExtra("pelatihanpendaftar", pendaftaran.getCourse());
+                intent.putExtra("sosmedpendaftar", pendaftaran.getMedsos());
+                intent.putExtra("gambarpendaftar", pendaftaran.getImage());
+                intent.putExtra("keteranganpendaftar", pendaftaran.getKeterangan());
+                intent.putExtra("nomorhape", pendaftaran.getNohp());
+                context.startActivity(intent);
+            }
+        });
         try{
             if (pendaftaran.getImage()!=null)
-                Picasso.get().load(pendaftaran.getImage()).into(holder.imgpendaftar);
+                Glide.with(context)
+                        .load(pendaftaran.getImage())
+                        .circleCrop()
+                        .into(holder.imgpendaftar);
+//                Picasso.get().load(pendaftaran.getImage()).into(holder.imgpendaftar);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -93,7 +107,7 @@ public class PendaftarAdapter extends RecyclerView.Adapter<PendaftarAdapter.Pend
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
-                                            Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(context, "Data Berhasil Dihapus", Toast.LENGTH_SHORT).show();
                                         }
                                     }).addOnFailureListener(new OnFailureListener() {
                                 @Override
@@ -136,7 +150,6 @@ public class PendaftarAdapter extends RecyclerView.Adapter<PendaftarAdapter.Pend
     public static class PendaftarViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView namapendaftar;
-        private TextView jkpendaftar;
         private TextView alamatemail;
         private TextView asalinstansi;
         private TextView nohp;
@@ -146,23 +159,23 @@ public class PendaftarAdapter extends RecyclerView.Adapter<PendaftarAdapter.Pend
         private ImageView imgpendaftar;
         private ImageButton deletePendaftar;
         private ImageButton hubungiPendaftar;
-
+        View view;
 
         public PendaftarViewHolder(@NonNull View itemView) {
             super(itemView);
 
             namapendaftar = itemView.findViewById(R.id.namapendaftar);
-//            jkpendaftar = itemView.findViewById(R.id.jkpendaftar);
-            ket= itemView.findViewById(R.id.keterangancourse);
-            medsos= itemView.findViewById(R.id.medsos);
-            alamatemail = itemView.findViewById(R.id.alamatEmail);
-            asalinstansi = itemView.findViewById(R.id.asalinstansi);
+//            ket= itemView.findViewById(R.id.keterangancourse);
+//            medsos= itemView.findViewById(R.id.medsos);
+//            alamatemail = itemView.findViewById(R.id.alamatEmail);
+//            asalinstansi = itemView.findViewById(R.id.asalinstansi);
             nohp = itemView.findViewById(R.id.nohp);
             corsedipilih = itemView.findViewById(R.id.coursdipilih);
             imgpendaftar = itemView.findViewById(R.id.imgpendaftar);
             deletePendaftar = itemView.findViewById(R.id.deletePendaftar);
             hubungiPendaftar = itemView.findViewById(R.id.hubungiPendaftar);
 
+            view=itemView;
         }
     }
 }

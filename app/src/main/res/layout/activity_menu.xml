@@ -15,47 +15,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/note"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="200dp"
-        android:background="@drawable/ic_note"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Upload Course"
-        android:fontFamily="@font/sairabold"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="@+id/note"
-        app:layout_constraintStart_toStartOf="@+id/note"
-        app:layout_constraintTop_toBottomOf="@+id/note" />
-
-    <ImageView
-        android:id="@+id/video"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/ic_video"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/note" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/sairabold"
-        android:text="Upload Video"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="@+id/video"
-        app:layout_constraintStart_toStartOf="@+id/video"
-        app:layout_constraintTop_toBottomOf="@+id/video" />
-    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -74,55 +33,177 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/lihatcourse"
-        android:layout_width="wrap_content"
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="88dp"
-        android:background="@drawable/ic_btn_book"
-        android:fontFamily="@font/poppinssb"
-        android:text="Lihat Course"
-        android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/video" />
-
-    <Button
-        android:id="@+id/lihatvideo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
-        android:text="Lihat Video"
-        android:fontFamily="@font/poppinssb"
-        android:textColor="@color/white"
-        android:background="@drawable/ic_btn_book"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.419"
-        app:layout_constraintStart_toEndOf="@+id/lihatcourse"
-        app:layout_constraintTop_toBottomOf="@+id/video" />
-
-    <Button
-        android:id="@+id/pendaftar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="List Pendaftar"
-        android:fontFamily="@font/poppinssb"
-        android:textColor="@color/white"
-        android:background="@drawable/ic_btn_book"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.518"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/video"
-        app:layout_constraintVertical_bias="0.094" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="50dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:paddingBottom="30dp"
+            android:layout_gravity="center"
+            app:layout_constraintBottom_toTopOf="@+id/imageView3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                app:cardCornerRadius="5dp"
+                android:layout_marginStart="30dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/cardView4">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                    <ImageView
+                        android:id="@+id/note"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:background="@drawable/ic_note" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/note"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="15dp"
+                        android:fontFamily="@font/sairabold"
+                        android:text="Kelola Pelatihan"
+                        android:textColor="@color/black" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/cardView"
+                android:padding="15dp"
+                app:cardCornerRadius="5dp"
+                android:layout_marginEnd="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                    <ImageView
+                        android:id="@+id/video"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:background="@drawable/ic_video" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/video"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="15dp"
+                        android:fontFamily="@font/sairabold"
+                        android:text="Kelola Video"
+                        android:textColor="@color/black" />
+                </RelativeLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cardView"
+
+                app:cardCornerRadius="5dp"
+                android:layout_marginTop="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView4">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:foregroundGravity="center">
+
+                    <ImageView
+                        android:id="@+id/pendaftar"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="0dp"
+                        android:background="@drawable/ic_baseline_person_pin_24" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/pendaftar"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="15dp"
+                        android:fontFamily="@font/sairabold"
+                        android:text="Kelola Pendaftar"
+                        android:textColor="@color/black" />
+                </RelativeLayout>
+
+
+            </androidx.cardview.widget.CardView>
+            <!--            <ImageView-->
+            <!--                android:id="@+id/video"-->
+            <!--                android:layout_width="150dp"-->
+            <!--                android:layout_height="150dp"-->
+            <!--                android:layout_marginTop="68dp"-->
+            <!--                android:background="@drawable/ic_video"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintHorizontal_bias="0.823"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+            <!--            <TextView-->
+            <!--                android:id="@+id/textView3"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:fontFamily="@font/sairabold"-->
+            <!--                android:text="Tambah Video"-->
+            <!--                android:textColor="@color/black"-->
+            <!--                app:layout_constraintEnd_toEndOf="@+id/video"-->
+            <!--                app:layout_constraintStart_toStartOf="@+id/video"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/video" />-->
+
+            <!--            <ImageView-->
+            <!--                android:id="@+id/btnpendaftar"-->
+            <!--                android:layout_width="150dp"-->
+            <!--                android:layout_height="150dp"-->
+            <!--                android:background="@drawable/ic_personal_card_svgrepo_com"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/textView3" />-->
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginBottom="-4dp"
-        android:background="@drawable/ic_footer"
+        android:id="@+id/logout"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/logoutbtn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />/
 </androidx.constraintlayout.widget.ConstraintLayout>

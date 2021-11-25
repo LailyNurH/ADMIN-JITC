@@ -54,10 +54,21 @@
         android:layout_above="@+id/deleteFab"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="20dp"
+        android:visibility="invisible"
         android:layout_marginBottom="5dp"
         android:src="@drawable/ic_video"
         app:fabSize="mini" />
-
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/updatefab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@id/downloadFab"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="140dp"
+        android:src="@drawable/ic_edit"
+        app:fabSize="mini" />
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/deleteFab"
         android:layout_width="wrap_content"

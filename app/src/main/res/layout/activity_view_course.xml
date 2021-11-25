@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     tools:context=".uploadcourse.ViewCourseActivity">
 
     <ImageView
@@ -12,29 +12,21 @@
         android:background="@drawable/ic_header"
         android:layout_height="200dp"/>
 
-    <ImageView
-        android:id="@+id/f"
-        android:layout_width="match_parent"
-        android:background="@drawable/ic_footer"
-        android:layout_alignParentBottom="true"
-        android:layout_height="70dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/sairabold"
-        android:textColor="@color/white"
-        android:textSize="30sp"
-        android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"
-        android:text="List Course"/>
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/sairabold"
+        android:text="List Pelatihan"
+        android:textColor="@color/white"
+        android:textSize="30sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/viewCourseRV"
         android:layout_below="@id/imageView"
-        android:layout_above="@id/f"
         android:layout_margin="16dp"
-        tools:listitem="@layout/course_list_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -44,4 +36,13 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true" />
 
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addpelatihan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+android:layout_alignParentBottom="true"
+        android:layout_margin="20sp"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/ic_add" />
 </RelativeLayout>

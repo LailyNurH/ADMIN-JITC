@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
 
+import com.jitc.adminjitc.login.LoginActivity;
 import com.jitc.adminjitc.R;
+import com.jitc.adminjitc.login.SharedPrefManager;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -16,11 +18,25 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         final Handler handler = new Handler();
-        handler.postDelayed(() -> {
-            Intent i = new Intent(SplashActivity.this, MenuActivity.class);
-            finishAffinity();
-            startActivity(i);
-        }, 2500);
+
+        final SharedPrefManager sharedPrefManager = new SharedPrefManager(this);
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (sharedPrefManager.getIsLogin()){
+                    Intent i = new Intent(SplashActivity.this, MenuActivity.class);
+                    finishAffinity();
+                    startActivity(i);
+                }else{
+                    Intent i = new Intent(SplashActivity.this, LoginActivity.class);
+                    finishAffinity();
+                    startActivity(i);
+                }
+            }
+        }, 3000);
+
     }
 }

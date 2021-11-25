@@ -4,21 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".video.UploadVideoActivity">
+    tools:context=".video.UpdateVideoActivity">
 
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/videoheader"
         android:layout_width="match_parent"
-        android:background="@drawable/ic_header"
-        android:layout_height="200dp"/>
+        android:layout_height="200dp"
+        android:background="@drawable/ic_header" />
 
     <ImageView
-        android:id="@+id/f"
+        android:id="@+id/footer"
         android:layout_width="match_parent"
-        android:background="@drawable/ic_footer"
+        android:layout_height="70dp"
         android:layout_alignParentBottom="true"
-        android:layout_height="70dp"/>
+        android:background="@drawable/ic_footer" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -26,21 +26,22 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         android:fontFamily="@font/sairabold"
-        android:text="Tambahkan Video"
+        android:text="Update Video"
         android:textColor="@color/white"
         android:textSize="30sp" />
+
     <VideoView
-        android:id="@+id/videoView"
-        android:layout_margin="16dp"
-        android:layout_below="@id/imageView"
+        android:id="@+id/updateVideoView"
         android:layout_width="match_parent"
-        android:layout_height="300dp" />
+        android:layout_height="300dp"
+        android:layout_below="@id/videoheader"
+        android:layout_margin="16dp" />
 
     <EditText
-        android:id="@+id/etTitle"
+        android:id="@+id/etTitlevideo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/videoView"
+        android:layout_below="@+id/updateVideoView"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
@@ -52,16 +53,15 @@
         android:textColor="@color/black" />
 
     <Button
-        android:id="@+id/uploadVideoBtn"
+        android:id="@+id/updateVideoBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/etTitle"
+        android:layout_below="@+id/etTitlevideo"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:background="@color/purple_700"
-        android:hint="Tambah Video"
+        android:hint="Update Video"
         android:textColor="@color/white" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

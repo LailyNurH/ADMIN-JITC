@@ -40,10 +40,10 @@ public class DetailCourseActivity extends AppCompatActivity {
         String deskripsidetail = intent.getStringExtra("descdetail");
 
         String Url =  intent.getStringExtra("imagess");
-//        Picasso.get().load(Url).into(cimage);
+
         if (Url.isEmpty()) {
             cimage.setImageResource(R.drawable.logojitc);
-        } else{
+        } else {
             Picasso.get().load(Url).into(cimage);
         }
         ctitle.setText(title);

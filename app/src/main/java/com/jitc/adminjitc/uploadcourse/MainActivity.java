@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(Void aVoid) {
                 pd.dismiss();
-                Toast.makeText(MainActivity.this, "Course terupload", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Pelatihan Berhasil di upload", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, ViewCourseActivity.class);
                 startActivity(intent);
             }

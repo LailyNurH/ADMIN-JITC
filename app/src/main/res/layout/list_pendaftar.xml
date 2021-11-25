@@ -20,39 +20,34 @@
                 android:id="@+id/deletePendaftar"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+                android:layout_below="@id/hubungiPendaftar"
                 android:background="@drawable/ic_delete"
                 android:layout_alignParentEnd="true"
                 />
+
             <ImageButton
                 android:id="@+id/hubungiPendaftar"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_below="@id/deletePendaftar"
-                android:background="@drawable/ic_message"
+             android:layout_marginTop="10dp"
                 android:layout_alignParentEnd="true"
-                />
+                android:background="@drawable/ic_message" />
 
 
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cvvimage"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                app:cardBackgroundColor="@color/teal_200"
-                app:cardCornerRadius="18dp">
 
                 <ImageView
                     android:id="@+id/imgpendaftar"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </androidx.cardview.widget.CardView>
+                    android:layout_width="120dp"
+                    android:layout_height="120dp" />
+
 
             <LinearLayout
                 android:id="@+id/linear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
-                android:layout_toRightOf="@id/cvvimage"
+                android:layout_toRightOf="@id/imgpendaftar"
                 android:orientation="vertical">
 
                 <TextView
@@ -65,29 +60,20 @@
                     android:textSize="17sp" />
 
 <!--                <TextView-->
-<!--                    android:id="@+id/jkpendaftar"-->
+<!--                    android:id="@+id/alamatEmail"-->
 <!--                    android:layout_width="wrap_content"-->
 <!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Jenis Kelamin"-->
-<!--                    android:fontFamily="@font/poppinsmedium"-->
-<!--                    android:textColor="#5843BE"-->
+<!--                    android:text="Alamat Email"-->
+<!--                    android:fontFamily="@font/poppinslight"-->
 <!--                    android:textSize="17sp" />-->
-
-                <TextView
-                    android:id="@+id/alamatEmail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Alamat Email"
-                    android:fontFamily="@font/poppinslight"
-                    android:textSize="17sp" />
-                <TextView
-                    android:id="@+id/asalinstansi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Asal Instansi"
-                    android:maxLines="1"
-                    android:fontFamily="@font/poppinslight"
-                    android:textSize="17sp" />
+<!--                <TextView-->
+<!--                    android:id="@+id/asalinstansi"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Asal Instansi"-->
+<!--                    android:maxLines="1"-->
+<!--                    android:fontFamily="@font/poppinslight"-->
+<!--                    android:textSize="17sp" />-->
                 <TextView
                     android:id="@+id/nohp"
                     android:layout_width="wrap_content"
@@ -104,23 +90,23 @@
                     android:maxLines="1"
                     android:fontFamily="@font/poppinslight"
                     android:textSize="17sp" />
-                <TextView
-                    android:id="@+id/keterangancourse"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Keterangan Course"
-                    android:maxLines="1"
-                    android:fontFamily="@font/poppinslight"
-                    android:textSize="17sp" />
+<!--                <TextView-->
+<!--                    android:id="@+id/keterangancourse"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Keterangan Course"-->
+<!--                    android:maxLines="1"-->
+<!--                    android:fontFamily="@font/poppinslight"-->
+<!--                    android:textSize="17sp" />-->
 
-                <TextView
-                    android:id="@+id/medsos"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Media Sosial"
-                    android:maxLines="1"
-                    android:fontFamily="@font/poppinslight"
-                    android:textSize="17sp" />
+<!--                <TextView-->
+<!--                    android:id="@+id/medsos"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Media Sosial"-->
+<!--                    android:maxLines="1"-->
+<!--                    android:fontFamily="@font/poppinslight"-->
+<!--                    android:textSize="17sp" />-->
             </LinearLayout>
 
 

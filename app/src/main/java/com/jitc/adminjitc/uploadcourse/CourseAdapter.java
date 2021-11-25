@@ -1,11 +1,14 @@
 package com.jitc.adminjitc.uploadcourse;
 
+
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Parcelable;
+import android.media.Image;
+import android.net.Uri;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,13 +29,14 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.jitc.adminjitc.R;
 import com.jitc.adminjitc.uploadcourse.model.UploadCourseData;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ViewHolder;
 import com.squareup.picasso.Picasso;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -40,16 +44,15 @@ import java.util.Map;
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseViewAdapter> {
     private Context context;
     private final ArrayList <UploadCourseData>list;
-
+    public static ImageView loadimg;
+    public static Button pickimg;
+    public static int PICK_IMAGE_CODE = 22;
+    public static Uri filepath;
+    public static ProgressDialog pDialog;
     public CourseAdapter(Context context, ArrayList<UploadCourseData> list) {
         this.context = context;
         this.list = list;
     }
-
-
-//    public CourseAdapter(ViewCourseActivity viewCourseActivity, ArrayList<UploadCourseData> list) {
-//    }
-
 
     @NonNull
     @Override
@@ -60,6 +63,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
 
     @Override
     public void onBindViewHolder(@NonNull CourseAdapter.CourseViewAdapter holder, int position) {
+        holder.getAdapterPosition();
         UploadCourseData currentItem = list.get(position);
         holder.coursejudul.setText(currentItem.getTitle());
         holder.courseharga.setText(currentItem.getHarga());
@@ -71,62 +75,19 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         }catch (Exception e){
             e.printStackTrace();
         }
+
         holder.updateCourse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final DialogPlus dialogPlus=DialogPlus.newDialog(holder.courseimage.getContext())
-                        .setContentHolder(new ViewHolder(R.layout.update_dialog))
-                        .setExpanded(true,1100)
-                        .create();
-                View myview=dialogPlus.getHolderView();
-                final EditText upnama=myview.findViewById(R.id.unama);
-                final EditText upharga=myview.findViewById(R.id.uharga);
-                final EditText updeskripsi=myview.findViewById(R.id.udeskripsi);
-                final EditText updurasi=myview.findViewById(R.id.udurasi);
-                final ImageView upimages= myview.findViewById(R.id.updateImage);
-                Button update=myview.findViewById(R.id.btnUpdate);
+                Intent intent = new Intent(context,UpdateCourseActivity.class);
+                intent.putExtra("title",currentItem.getTitle());
+                intent.putExtra("durasi",currentItem.getDurasi());
+                intent.putExtra("deskripsi",currentItem.getDeskripsi());
+                intent.putExtra("harga",currentItem.getHarga());
+                intent.putExtra("image",currentItem.getImage());
+                intent.putExtra("key",currentItem.getKey());
 
-                upnama.setText(currentItem.getTitle());
-                upharga.setText(currentItem.getHarga());
-                updeskripsi.setText(currentItem.getDeskripsi());
-                updurasi.setText(currentItem.getDurasi());
-
-//                upimages.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        Intent pickimage = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//                        startActivityForResult(pickimage,REQ);
-//                    }
-//                });
-                dialogPlus.show();
-                update.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Map<String,Object> map=new HashMap<>();
-                        map.put("title",upnama.getText().toString());
-                        map.put("harga",upharga.getText().toString());
-                        map.put("deskripsi",updeskripsi.getText().toString());
-                        map.put("durasi",updurasi.getText().toString());
-                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Note");
-                        reference.child(currentItem.getKey()).updateChildren(map)
-
-                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        Toast.makeText(context, "Course berhasil di Update", Toast.LENGTH_SHORT).show();
-                                        dialogPlus.dismiss();
-                                    }
-                                })
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        dialogPlus.dismiss();
-                                    }
-                                });
-                    }
-                });
-
-
+                context.startActivity(intent);
             }
         });
 
@@ -135,7 +96,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
             public void onClick(View v) {
                 Intent intent = new Intent(context,DetailCourseActivity.class);
 
-                Toast.makeText(context, "Di Klik", Toast.LENGTH_SHORT).show();
                 intent.putExtra("title", currentItem.getTitle());
                 intent.putExtra("harga", currentItem.getHarga());
                 intent.putExtra("durasi", currentItem.getDurasi());
@@ -148,7 +108,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         holder.deletecourse.setOnClickListener(v -> {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setMessage("Are you sure to delete this note ? ");
+            builder.setMessage("Apakah Anda yakin ingin menghapus data pelatihan ini? ");
             builder.setCancelable(true);
             builder.setPositiveButton(
                     "OK",
@@ -160,7 +120,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
-                                            Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(context, "Data Berhasil Di Hapus", Toast.LENGTH_SHORT).show();
                                         }
                                     }).addOnFailureListener(new OnFailureListener() {
                                 @Override

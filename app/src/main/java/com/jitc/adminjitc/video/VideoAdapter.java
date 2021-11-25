@@ -4,9 +4,11 @@ import android.app.AlertDialog;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Environment;
+import android.telecom.VideoProfile;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +30,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.jitc.adminjitc.R;
+import com.jitc.adminjitc.uploadcourse.DetailCourseActivity;
+import com.jitc.adminjitc.uploadcourse.UpdateCourseActivity;
+import com.jitc.adminjitc.uploadcourse.model.UploadCourseData;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -71,21 +76,32 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.HolderVideo>
                 downloadVideo(video);
             }
         });
+        holder.updateFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, UpdateVideoActivity.class);
+
+                intent.putExtra("title", video.getTitle());
+                intent.putExtra("videoUrl", video.getVideoUrl());
+                intent.putExtra("id",video.getId());
+                context.startActivity(intent);
+            }
+        });
 
         holder.deleteFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Delete")
-                        .setMessage("Are you sure about this: " + title)
-                        .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                builder.setTitle("Hapus")
+                        .setMessage("Apakah Anda yakin ingin menghapus video  " + title)
+                        .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 deleteVideo(video);
                             }
                         })
-                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
@@ -124,7 +140,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.HolderVideo>
                         return true;
                     }
                     case MediaPlayer.MEDIA_INFO_BUFFERING_START: {
-                        holder.progressBar.setVisibility(View.VISIBLE);
+                        holder.progressBar.setVisibility(View.INVISIBLE);
                         return true;
                     }
                     case MediaPlayer.MEDIA_INFO_BUFFERING_END: {
@@ -161,7 +177,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.HolderVideo>
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
-                                        Toast.makeText(context, "Videos deleted successfully...", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(context, "Video berhasil di Hapus", Toast.LENGTH_SHORT).show();
                                     }
                                 })
                                 .addOnFailureListener(new OnFailureListener() {
@@ -215,7 +231,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.HolderVideo>
         VideoView videoView;
         TextView tvTitle, tvTime;
         ProgressBar progressBar;
-        FloatingActionButton downloadFab, deleteFab;
+        FloatingActionButton downloadFab, deleteFab,updateFab;
 
         public HolderVideo(@NonNull View itemView) {
             super(itemView);
@@ -226,6 +242,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.HolderVideo>
             progressBar = itemView.findViewById(R.id.progressBar);
             downloadFab = itemView.findViewById(R.id.downloadFab);
             deleteFab = itemView.findViewById(R.id.deleteFab);
+            updateFab = itemView.findViewById(R.id.updatefab);
 
         }
     }

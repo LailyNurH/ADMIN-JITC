@@ -9,8 +9,8 @@
    <ImageView
        android:id="@+id/imageView"
        android:layout_width="match_parent"
-       android:background="@drawable/ic_header"
-       android:layout_height="200dp"/>
+       android:layout_height="200dp"
+       android:background="@drawable/ic_header" />
 
    <ImageView
        android:id="@+id/f"
@@ -25,7 +25,7 @@
        android:layout_height="wrap_content"
        android:layout_marginTop="30dp"
        android:fontFamily="@font/sairabold"
-       android:text="Upload Course"
+       android:text="Tambah Pelatihan"
        android:textColor="@color/white"
        android:layout_centerHorizontal="true"
        android:textSize="30sp"
@@ -71,7 +71,7 @@
                 android:layout_marginTop="10dp"
                 android:padding="5dp"
                 android:textAlignment="center"
-                android:text="Select Image\nCourse"
+                android:text="Pilih Gambar\nPelatihan"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
 
@@ -90,7 +90,7 @@
              android:id="@+id/judulCourse"
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
-             android:hint="Masukan judul Course" />
+             android:hint="Masukan judul Pelatihan" />
 
       </com.google.android.material.textfield.TextInputLayout>
 
@@ -104,7 +104,7 @@
              android:id="@+id/hargaCourse"
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
-             android:hint="Masukan Harga Course" />
+             android:hint="Masukan Harga Pelatihan" />
 
       </com.google.android.material.textfield.TextInputLayout>
 
@@ -118,7 +118,7 @@
              android:id="@+id/durasiCourse"
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
-             android:hint="Masukan Durasi Course" />
+             android:hint="Masukan Durasi Pelatihan" />
 
       </com.google.android.material.textfield.TextInputLayout>
 
@@ -134,7 +134,7 @@
              android:layout_height="wrap_content"
              android:lines="10"
              android:minLines="5"
-             android:hint="Masukan Deskripsi Course" />
+             android:hint="Masukan Deskripsi Pelatihan" />
 
       </com.google.android.material.textfield.TextInputLayout>
       <com.google.android.material.button.MaterialButton
@@ -143,7 +143,7 @@
           android:layout_height="wrap_content"
           android:layout_marginTop="16dp"
           android:textColor="@color/white"
-          android:text="Upload Course"
+          android:text="Tambah Pelatihan"
           android:fontFamily="@font/poppinssb"
           android:background="@drawable/btndarkgrey"
           />

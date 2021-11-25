@@ -18,6 +18,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.jitc.adminjitc.R;
+import com.jitc.adminjitc.UI.MenuActivity;
+import com.jitc.adminjitc.uploadcourse.ViewCourseActivity;
 
 import java.util.ArrayList;
 
@@ -78,5 +80,11 @@ public class ViewVideoActivity extends AppCompatActivity {
 
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
+
+        startActivity(new Intent(ViewVideoActivity.this, MenuActivity.class));
+
     }
 }

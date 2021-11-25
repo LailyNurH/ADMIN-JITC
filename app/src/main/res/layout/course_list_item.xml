@@ -16,22 +16,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp">
-            <ImageButton
-                android:id="@+id/deleteNote"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@drawable/ic_delete"
-                android:layout_alignParentEnd="true"
-                />
 
             <ImageButton
                 android:id="@+id/updateCourse"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_below="@id/deleteNote"
-                android:background="@drawable/ic_edit"
+
                 android:layout_alignParentEnd="true"
-                />
+                android:background="@drawable/ic_edit" />
+
+            <ImageButton
+                android:id="@+id/deleteNote"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_below="@id/updateCourse"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/ic_delete" />
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvimage"
                 android:layout_width="120dp"

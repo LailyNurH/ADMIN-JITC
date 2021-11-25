@@ -25,8 +25,6 @@ import java.util.ArrayList;
 
 public class ListPendaftarActivity extends AppCompatActivity {
     private RecyclerView listpendaftarRV;
-//    private ProgressBar progressBar;
-
     private ArrayList<Pendaftaran> listdaftar = new ArrayList<>();
     private PendaftarAdapter adapter;
     private DatabaseReference databaseReference;
@@ -42,7 +40,7 @@ public class ListPendaftarActivity extends AppCompatActivity {
 
         listpendaftarRV.setLayoutManager(new LinearLayoutManager(this));
         listpendaftarRV.setHasFixedSize(true);
-
+        listpendaftarRV.setNestedScrollingEnabled(false);
         getData();
 //        showRecyclerList();
     }
