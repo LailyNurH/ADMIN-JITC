@@ -9,8 +9,8 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:background="@drawable/ic_header"
-        android:layout_height="200dp"/>
+        android:layout_height="200dp"
+        android:background="@drawable/ic_header" />
 
 
     <TextView
@@ -25,10 +25,10 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/viewCourseRV"
-        android:layout_below="@id/imageView"
-        android:layout_margin="16dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageView"
+        android:layout_margin="16dp" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -41,8 +41,8 @@
         android:id="@+id/addpelatihan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-android:layout_alignParentBottom="true"
-        android:layout_margin="20sp"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20sp"
         android:src="@drawable/ic_add" />
 </RelativeLayout>

@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Environment;
-import android.telecom.VideoProfile;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,9 +29,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.jitc.adminjitc.R;
-import com.jitc.adminjitc.uploadcourse.DetailCourseActivity;
-import com.jitc.adminjitc.uploadcourse.UpdateCourseActivity;
-import com.jitc.adminjitc.uploadcourse.model.UploadCourseData;
 
 import java.util.ArrayList;
 import java.util.Calendar;

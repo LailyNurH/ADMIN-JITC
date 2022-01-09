@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -26,7 +25,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.jitc.adminjitc.R;
 import com.jitc.adminjitc.UI.MenuActivity;
-import com.jitc.adminjitc.uploadcourse.model.UploadCourseData;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -49,7 +47,7 @@ public class ViewCourseActivity extends AppCompatActivity {
         viewCourseRV = findViewById(R.id.viewCourseRV);
         progressBar = findViewById(R.id.progressBar);
 
-        reference = FirebaseDatabase.getInstance().getReference().child("Note");
+        reference = FirebaseDatabase.getInstance().getReference().child("Pelatihan");
 
         fabPelatihan = findViewById(R.id.addpelatihan);
         fabPelatihan.setOnClickListener(new View.OnClickListener() {
@@ -100,10 +98,5 @@ public class ViewCourseActivity extends AppCompatActivity {
             Picasso.get().load(filepath).into(loadimg);
         }
     }
-    @Override
-    public void onBackPressed() {
 
-       startActivity(new Intent(ViewCourseActivity.this, MenuActivity.class));
-
-    }
 }

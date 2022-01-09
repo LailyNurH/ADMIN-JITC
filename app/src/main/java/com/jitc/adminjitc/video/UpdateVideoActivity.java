@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.MediaController;
@@ -52,6 +53,7 @@ public class UpdateVideoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_video);
 
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Mohon Menunggu");
         progressDialog.setMessage("Prosses Unggah Video");

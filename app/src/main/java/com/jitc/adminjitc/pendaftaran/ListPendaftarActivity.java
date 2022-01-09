@@ -6,9 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.view.View;
 import android.view.WindowManager;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -17,9 +15,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.jitc.adminjitc.R;
-import com.jitc.adminjitc.uploadcourse.CourseAdapter;
-import com.jitc.adminjitc.uploadcourse.ViewCourseActivity;
-import com.jitc.adminjitc.uploadcourse.model.UploadCourseData;
 
 import java.util.ArrayList;
 

@@ -87,7 +87,7 @@ public class PendaftarAdapter extends RecyclerView.Adapter<PendaftarAdapter.Pend
         holder.hubungiPendaftar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Uri url = Uri.parse("https://api.whatsapp.com/send?phone=" + pendaftaran.getNohp()); // get your url from list item or your code.
+                Uri url = Uri.parse("https://api.whatsapp.com/send/?phone=62&text&app_absent=0" + pendaftaran.getNohp()); // get your url from list item or your code.
                 Intent intent = new Intent(Intent.ACTION_VIEW, url);
                 context.startActivity(intent);
             }

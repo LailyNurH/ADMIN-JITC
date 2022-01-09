@@ -1,20 +1,16 @@
 package com.jitc.adminjitc.uploadcourse;
 
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.media.Image;
 import android.net.Uri;
-import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,21 +21,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.jitc.adminjitc.R;
-import com.jitc.adminjitc.uploadcourse.model.UploadCourseData;
-import com.orhanobut.dialogplus.DialogPlus;
-import com.orhanobut.dialogplus.ViewHolder;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseViewAdapter> {
     private Context context;
@@ -115,7 +102,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Note");
+                            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Pelatihan");
                             reference.child(currentItem.getKey()).removeValue()
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override

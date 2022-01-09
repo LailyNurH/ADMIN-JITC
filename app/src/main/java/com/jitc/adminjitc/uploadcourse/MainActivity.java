@@ -5,7 +5,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -17,18 +16,18 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.jitc.adminjitc.R;
-import com.jitc.adminjitc.uploadcourse.model.UploadCourseData;
+import com.jitc.adminjitc.UI.MenuActivity;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -40,11 +39,13 @@ public class MainActivity extends AppCompatActivity {
 
     private CardView addImage;
     private ImageView courseImage;
+    private ImageView preview;
     private EditText judulCourse;
     private EditText hargaCourse;
     private EditText durasiCourse;
     private EditText deskripsicourse;
-    private Button uploadNoteBtn;
+    private Button uploadPelatihanBtn;
+    private LinearLayout linearimg;
 
     private final  int REQ = 1;
     private Bitmap bitmap;
@@ -62,26 +63,29 @@ public class MainActivity extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         pd = new ProgressDialog(this);
 
+        linearimg = findViewById(R.id.linearImg);
         addImage = findViewById(R.id.addImage);
+        preview = findViewById(R.id.imgpreview);
         courseImage = findViewById(R.id.imagepreview);
         judulCourse = findViewById(R.id.judulCourse);
         hargaCourse = findViewById(R.id.hargaCourse);
         durasiCourse = findViewById(R.id.durasiCourse);
         deskripsicourse = findViewById(R.id.deskripsi);
-        uploadNoteBtn = findViewById(R.id.uploadCourseBtn);
+        uploadPelatihanBtn = findViewById(R.id.uploadCourseBtn);
 
         addImage.setOnClickListener(v -> openGallery());
-            uploadNoteBtn.setOnClickListener(v -> {
+        uploadPelatihanBtn.setOnClickListener(v -> {
                 if(judulCourse.getText().toString().isEmpty() || hargaCourse.getText().toString().isEmpty()||durasiCourse.getText().toString().isEmpty()||deskripsicourse.getText().toString().isEmpty()){
-                    judulCourse.setError("Empty");
-                    hargaCourse.setError("Empty");
-                    durasiCourse.setError("Empty");
-                    deskripsicourse.setError("Empty");
+                    judulCourse.setError("Wajib Terisi");
+                    hargaCourse.setError("Wajib Terisi");
+                    durasiCourse.setError("Wajib Terisi");
+                    deskripsicourse.setError("Wajib Terisi");
                     judulCourse.requestFocus();
                     hargaCourse.requestFocus();
                     durasiCourse.requestFocus();
                     deskripsicourse.requestFocus();
-                }else if (bitmap == null){
+                }
+                else if (bitmap == null){
                     uploadData();
                 }else {
                     uploadImage();
@@ -95,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
         bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);
         byte[] finalImg = baos.toByteArray();
         final StorageReference filePath;
-        filePath = storageReference.child("Note").child(finalImg+"jpg");
+        filePath = storageReference.child("Pelatihan").child(finalImg+"jpg");
         final UploadTask uploadTask = filePath.putBytes(finalImg);
         uploadTask.addOnCompleteListener(MainActivity.this, task -> {
             if (task.isSuccessful()){
@@ -112,7 +116,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void uploadData() {
-        reference = reference.child("Note");
+        if (bitmap==null){
+            Toast.makeText(MainActivity.this, "Gambar Wajib Terisi", Toast.LENGTH_SHORT).show();
+        }else{
+        reference = reference.child("Pelatihan");
         final String uniqueKey = reference.push().getKey();
 
         String title =  judulCourse.getText().toString();
@@ -128,7 +135,8 @@ public class MainActivity extends AppCompatActivity {
         SimpleDateFormat currentTime = new SimpleDateFormat("hh:mm a");
         String time = currentTime.format(calForTime.getTime());
 
-        UploadCourseData uploadCourseData = new UploadCourseData(title,harga,durasi,deskripsi,dowloadUrl,date,time,uniqueKey);
+//        UploadCourseData uploadCourseData = new UploadCourseData(title,harga,durasi,deskripsi,dowloadUrl,date,time,uniqueKey);
+        UploadCourseData uploadCourseData = new UploadCourseData(title,durasi,harga,deskripsi,dowloadUrl,date,time,uniqueKey);
 
         reference.child(uniqueKey).setValue(uploadCourseData).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
@@ -145,11 +153,23 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Ada sesuatu hal yang Salah", Toast.LENGTH_SHORT).show();
             }
         });
+        }
     }
 
     private void openGallery() {
-        Intent pickimage = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(pickimage,REQ);
+        Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
+        getIntent.setType("image/*");
+
+
+        Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        pickIntent.setType("image/*");
+
+        Intent chooserIntent = Intent.createChooser(getIntent, "Select Image");
+        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] {pickIntent});
+
+        startActivityForResult(chooserIntent, REQ);
+//        Intent pickimage = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//        startActivityForResult(pickimage,REQ);
     }
 
     @Override
@@ -162,9 +182,15 @@ public class MainActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            courseImage.setImageBitmap(bitmap);
+            linearimg.setVisibility(View.GONE);
+            preview.setImageBitmap(bitmap);
         }
     }
+    @Override
+    public void onBackPressed() {
 
+        startActivity(new Intent(MainActivity.this, MenuActivity.class));
+
+    }
 
 }

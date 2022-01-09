@@ -29,9 +29,9 @@
                 android:id="@+id/hubungiPendaftar"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-             android:layout_marginTop="10dp"
                 android:layout_alignParentEnd="true"
-                android:background="@drawable/ic_message" />
+                android:layout_marginTop="10dp"
+                android:background="@drawable/ic_wa" />
 
 
 
@@ -47,66 +47,37 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
+                android:layout_marginEnd="20dp"
                 android:layout_toRightOf="@id/imgpendaftar"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/namapendaftar"
                     android:layout_width="wrap_content"
-                    android:fontFamily="@font/poppinsmedium"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppinsmedium"
                     android:text="Nama Pendaftar"
                     android:textColor="@color/black"
                     android:textSize="17sp" />
 
-<!--                <TextView-->
-<!--                    android:id="@+id/alamatEmail"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Alamat Email"-->
-<!--                    android:fontFamily="@font/poppinslight"-->
-<!--                    android:textSize="17sp" />-->
-<!--                <TextView-->
-<!--                    android:id="@+id/asalinstansi"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Asal Instansi"-->
-<!--                    android:maxLines="1"-->
-<!--                    android:fontFamily="@font/poppinslight"-->
-<!--                    android:textSize="17sp" />-->
                 <TextView
                     android:id="@+id/nohp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nomor Telefon"
-                    android:maxLines="1"
                     android:fontFamily="@font/poppinslight"
+                    android:maxLines="1"
+                    android:text="Nomor Telefon"
                     android:textSize="17sp" />
+
                 <TextView
                     android:id="@+id/coursdipilih"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Course Yang Di Pilih"
-                    android:maxLines="1"
                     android:fontFamily="@font/poppinslight"
+                    android:maxLines="1"
+                    android:text="Course Yang Di Pilih"
                     android:textSize="17sp" />
-<!--                <TextView-->
-<!--                    android:id="@+id/keterangancourse"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Keterangan Course"-->
-<!--                    android:maxLines="1"-->
-<!--                    android:fontFamily="@font/poppinslight"-->
-<!--                    android:textSize="17sp" />-->
 
-<!--                <TextView-->
-<!--                    android:id="@+id/medsos"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Media Sosial"-->
-<!--                    android:maxLines="1"-->
-<!--                    android:fontFamily="@font/poppinslight"-->
-<!--                    android:textSize="17sp" />-->
             </LinearLayout>
 
 

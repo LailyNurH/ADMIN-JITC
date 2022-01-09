@@ -81,10 +81,5 @@ public class ViewVideoActivity extends AppCompatActivity {
             }
         });
     }
-    @Override
-    public void onBackPressed() {
 
-        startActivity(new Intent(ViewVideoActivity.this, MenuActivity.class));
-
-    }
 }

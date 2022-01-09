@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -54,7 +55,7 @@ public class UpdateCourseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_course);
-
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         pd = new ProgressDialog(this);
         pd.setTitle("Mohon Menunggu");
         pd.setMessage("Proses Update Pelatihan");
@@ -84,7 +85,7 @@ public class UpdateCourseActivity extends AppCompatActivity {
         updatedurasiCourse.setText(updatedurasi);
         updatehargaCourse.setText(updateharga);
 
-        reference = FirebaseDatabase.getInstance().getReference().child("Note");
+        reference = FirebaseDatabase.getInstance().getReference().child("Pelatihan");
         storageReference = FirebaseStorage.getInstance().getReference();
 
         updateImageCourse.setOnClickListener(new View.OnClickListener() {
@@ -130,32 +131,36 @@ public class UpdateCourseActivity extends AppCompatActivity {
     }
 
     private void updateData(String s) {
-        pd.show();
-        HashMap map = new HashMap();
-        map.put("title", updatejudulCourse.getText().toString());
-        map.put("harga", updatehargaCourse.getText().toString());
-        map.put("deskripsi", updatedeskripsiCourse.getText().toString());
-        map.put("durasi", updatedurasiCourse.getText().toString());
-        map.put("image",s);
+        if (bitmap==null){
+            Toast.makeText(UpdateCourseActivity.this, "Gambar Wajib Terisi", Toast.LENGTH_SHORT).show();
+        }else {
+            pd.show();
+            HashMap map = new HashMap();
+            map.put("title", updatejudulCourse.getText().toString());
+            map.put("harga", updatehargaCourse.getText().toString());
+            map.put("deskripsi", updatedeskripsiCourse.getText().toString());
+            map.put("durasi", updatedurasiCourse.getText().toString());
+            map.put("image", s);
 
-        String key = getIntent().getStringExtra("key");
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Note");
+            String key = getIntent().getStringExtra("key");
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Pelatihan");
 
-        reference.child(key).updateChildren(map).addOnSuccessListener(new OnSuccessListener() {
-            @Override
-            public void onSuccess(Object o) {
-                Toast.makeText(UpdateCourseActivity.this, "Update Success", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(UpdateCourseActivity.this, MenuActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                pd.dismiss();
-                Toast.makeText(UpdateCourseActivity.this, "Something Wrong", Toast.LENGTH_SHORT).show();
-            }
-        });
+            reference.child(key).updateChildren(map).addOnSuccessListener(new OnSuccessListener() {
+                @Override
+                public void onSuccess(Object o) {
+                    Toast.makeText(UpdateCourseActivity.this, "Update Success", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(UpdateCourseActivity.this, MenuActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    pd.dismiss();
+                    Toast.makeText(UpdateCourseActivity.this, "Something Wrong", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
 
     }
 
@@ -165,7 +170,7 @@ public class UpdateCourseActivity extends AppCompatActivity {
         bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);
         byte[] finalImg = baos.toByteArray();
         final StorageReference filePath;
-        filePath = storageReference.child("Note").child(finalImg + "jpg");
+        filePath = storageReference.child("Pelatihan").child(finalImg + "jpg");
         final UploadTask uploadTask = filePath.putBytes(finalImg);
         uploadTask.addOnCompleteListener(UpdateCourseActivity.this, new OnCompleteListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -194,8 +199,17 @@ public class UpdateCourseActivity extends AppCompatActivity {
     }
 
     private void openGallery() {
-        Intent pickimg = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(pickimg, REQ);
+        Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
+        getIntent.setType("image/*");
+
+
+        Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        pickIntent.setType("image/*");
+
+        Intent chooserIntent = Intent.createChooser(getIntent, "Select Image");
+        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] {pickIntent});
+
+        startActivityForResult(chooserIntent, REQ);
     }
 
     @Override
@@ -211,5 +225,11 @@ public class UpdateCourseActivity extends AppCompatActivity {
             }
             updateImageCourse.setImageBitmap(bitmap);
         }
+    }
+    @Override
+    public void onBackPressed() {
+
+        startActivity(new Intent(UpdateCourseActivity.this, MenuActivity.class));
+
     }
 }

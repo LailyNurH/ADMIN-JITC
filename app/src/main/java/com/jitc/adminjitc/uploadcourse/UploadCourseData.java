@@ -1,4 +1,4 @@
-package com.jitc.adminjitc.uploadcourse.model;
+package com.jitc.adminjitc.uploadcourse;
 
 public class UploadCourseData {
     String title,durasi,harga,deskripsi, image, date, time, key;
